@@ -1,2 +1,3 @@
-# nixvim-config
-My nixvim config
+# Flakes 
+
+My flakes 
