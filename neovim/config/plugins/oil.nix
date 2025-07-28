@@ -1,13 +1,13 @@
 {
 
-  # programs.nixvim.keymaps = [
-  #   {
-  #     mode = "n";
-  #     key = "<leader>fb";
-  #     action = ":Oil<CR>";
-  #     options.desc = "Open Oil File Browser";
-  #   }
-  # ];
+  keymaps = [
+    {
+      mode = "n";
+      key = "<space>o";
+      action = ":Oil<CR>";
+      options.desc = "Open Oil File Browser";
+    }
+  ];
 
   plugins = {
     oil = {
@@ -19,7 +19,7 @@
         ];
         keymaps = {
           "<C-r>" = "actions.refresh";
-          "<leader>qq" = "actions.close";
+          "<leader>q" = "actions.close";
         };
         skip_confirm_for_simple_edits = true;
         constrain_cursor = "editable";
