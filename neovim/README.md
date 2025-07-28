@@ -1,2 +1,3 @@
-# nixvim-config
-My nixvim config
+# Neovim 
+
+My neovim config

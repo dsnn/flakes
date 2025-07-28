@@ -1,5 +1,5 @@
 {
-  description = "meta-flake";
+  description = "my flakes";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -7,6 +7,10 @@
     flake-utils.url = "github:numtide/flake-utils";
     neovim-flake = {
       url = "./neovim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    terminal-flake = {
+      url = "./terminal";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -18,6 +22,7 @@
       nixpkgs-stable,
       flake-utils,
       neovim-flake,
+      terminal-flake,
     }:
     flake-utils.lib.eachDefaultSystem (system:
     # let
@@ -26,6 +31,7 @@
     {
       packages = {
         neovim = neovim-flake.packages.${system}.default;
+        terminal = terminal-flake.packages.${system}.default;
       };
       # formatter = pkgs.alejandra;
     });
