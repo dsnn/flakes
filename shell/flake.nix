@@ -1,10 +1,11 @@
 {
-  description = "Terminal configuration";
+  description = "Shell configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
+
     home-manager = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/home-manager/master";

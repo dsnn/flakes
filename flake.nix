@@ -4,13 +4,19 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
+
     flake-utils.url = "github:numtide/flake-utils";
+
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager/master";
+
     neovim-flake = {
       url = "./neovim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    terminal-flake = {
-      url = "./terminal";
+
+    shell-flake = {
+      url = "./shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -21,18 +27,22 @@
       nixpkgs,
       nixpkgs-stable,
       flake-utils,
+      home-manager,
       neovim-flake,
       terminal-flake,
     }:
-    flake-utils.lib.eachDefaultSystem (system:
-    # let
-    #   pkgs = nixpkgs.legacyPackages.${system};
-    # in
+    let
+      system = "";
+    in
     {
+
+      # homeManagerModules.default = import ./modules;
+      # homeManagerModules.zsh = import ./modules/zsh.nix;
+      # homeManagerModules.tmux = import ./modules/tmux.nix;
+
       packages = {
         neovim = neovim-flake.packages.${system}.default;
-        terminal = terminal-flake.packages.${system}.default;
+        shell = terminal-flake.packages.${system}.default;
       };
-      # formatter = pkgs.alejandra;
-    });
+    };
 }
