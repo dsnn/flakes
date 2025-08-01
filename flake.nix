@@ -15,10 +15,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    shell-flake = {
-      url = "./shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # shell-flake = {
+    #   url = "./shell";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs =
@@ -29,7 +29,6 @@
       flake-utils,
       home-manager,
       neovim-flake,
-      terminal-flake,
     }:
     let
       system = "";
@@ -42,7 +41,7 @@
 
       packages = {
         neovim = neovim-flake.packages.${system}.default;
-        shell = terminal-flake.packages.${system}.default;
+        # shell = terminal-flake.packages.${system}.default;
       };
     };
 }
