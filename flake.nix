@@ -22,26 +22,24 @@
   };
 
   outputs =
-    inputs@{
-      self,
-      nixpkgs,
-      nixpkgs-stable,
-      flake-utils,
-      home-manager,
-      neovim-flake,
-    }:
-    let
-      system = "";
-    in
-    {
+    { flake-parts, neovim-flake, ... }@inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [
+        "aarch64-darwin"
+        "x86_64-linux"
+      ];
 
       # homeManagerModules.default = import ./modules;
       # homeManagerModules.zsh = import ./modules/zsh.nix;
       # homeManagerModules.tmux = import ./modules/tmux.nix;
 
-      packages = {
-        neovim = neovim-flake.packages.${system}.default;
-        # shell = terminal-flake.packages.${system}.default;
-      };
+      perSystem =
+        { system, ... }:
+        {
+          packages = {
+            neovim = neovim-flake.packages.${system}.default;
+            # shell = terminal-flake.packages.${system}.default;
+          };
+        };
     };
 }
