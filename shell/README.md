@@ -1,3 +1,0 @@
-# Shell 
-
-My shell config
