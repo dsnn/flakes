@@ -1,23 +1,19 @@
 # Flakes 
 
-My flakes 
+Repository for standalone tools, powered by [nix](https://nix.dev/).
 
-## Packages
+# Neovim 
 
-- nixvim
-- tmux
-- karabiner
-- zmk-config 
+[nixvim](https://github.com/nix-community/nixvim) with configurations
 
-## HM Modules
+For more info, see [documentation](https://nix-community.github.io/nixvim/plugins/neo-tree/window/index.html)
 
-Maybe not in this repo after all... 
+# Tmux 
 
-- git
-- shell
+Tmux with configurations
 
-## Types
+## Links
 
-- minimal
-- default
-- full
+- [extrakto](https://github.com/laktak/extrakto)
+- [jakehamiltons tmux](https://github.com/jakehamilton/tmux)
+
