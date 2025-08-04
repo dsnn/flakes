@@ -1,19 +1,11 @@
-{ inputs, ... }:
 {
-  text.readme.parts.tmux =
-    # markdown
-    ''
-      # Tmux 
-
-      Tmux with configurations
-
-    '';
-
-  flake.modules.tmux.imports = [
-    "plugins"
-  ];
-
-  flake.modules.tmux.plugins = [
+  config,
+  withSystem,
+  lib,
+  ...
+}:
+let
+  plugins = [
     "better-mouse-mode"
     "yank"
     "sesh"
@@ -24,6 +16,90 @@
     "tmux-fzf"
     "catppuccin"
   ];
+in
+{
+  text.readme.parts.tmux =
+    # markdown
+    ''
+      # Tmux 
+
+      Tmux with configurations
+
+      ## Links
+
+      - [extrakto](https://github.com/laktak/extrakto)
+      - [jakehamiltons tmux](https://github.com/jakehamilton/tmux)
+    '';
+
+  # |> map (file: "- `${file.path_}`")
+  # text.readme.tmux =
+  #   withSystem (builtins.head config.systems) plugins
+  #   |> map (file: "|        ${file}            |                        |")
+  #   |> lib.concat [
+  #     # markdown
+  #     ''
+  #       # Tmux
+  #
+  #       Standalone tmux with configurations, powered by [nixvim](https://github.com/nix-community/nixvim)
+  #
+  #       # Tmux plugins
+  #
+  #       | Name               | Description            |
+  #       | ------------------ | ---------------------- |
+  #     ''
+  #   ]
+  #   |> lib.concatLines
+  #   |> (s: s + "\n");
+
+  text.readme.parts.tmuxPlugins = withSystem (builtins.head config.systems) (
+    { pkgs, ... }:
+    let
+      fallbackDescriptions = {
+        yank = "Better yank support";
+        t-smart-tmux-session-manager = "Smart session managment";
+        vim-tmux-navigator = "Better support for navigation with tmux and vim";
+      };
+      plugins = [
+        "better-mouse-mode"
+        "yank"
+        "t-smart-tmux-session-manager"
+        "tmux-thumbs"
+        "fzf-tmux-url"
+        "tilish"
+        "vim-tmux-navigator"
+        "tmux-fzf"
+        "catppuccin"
+      ];
+
+      pluginRows = lib.map (
+        name:
+        let
+          plugin = pkgs.tmuxPlugins.${name};
+          meta = plugin.meta or { };
+          desc = meta.description or fallbackDescriptions.${name} or "No description.";
+          url = meta.homepage or meta.url or null;
+          nameCell = if url != null then "[${name}](${url})" else name;
+        in
+        ''
+          - ${nameCell}
+
+          ${desc}
+        ''
+      ) plugins;
+    in
+    lib.concatLines (
+      [
+        ''
+          ## Tmux
+
+          Standalone tmux with configurations, powered by [nixvim](https://github.com/nix-community/nixvim)
+
+          ### Tmux plugins
+        ''
+      ]
+      ++ pluginRows
+    )
+  );
 
   perSystem =
     { pkgs, ... }:
@@ -50,50 +126,3 @@
         };
     };
 }
-
-# text.readme.tmux =
-#   withSystem (builtins.head config.systems) (psArgs: psArgs.config.files.files)
-#   |> map (file: "- `${file.path_}`")
-#   |> lib.concat [
-#     # markdown
-#     ''
-#       # Tmux
-#
-#       Standalone tmux with configurations, powered by [nixvim](https://github.com/nix-community/nixvim)
-#
-#       # Tmux plugins
-#
-#       | Name               | Description            |
-#       | ------------------ | ---------------------- |
-#       | better-mouse-mode  | <Reason for usage>     |
-#     ''
-#   ]
-#   |> lib.concatLines
-#   |> (s: s + "\n");
-
-# let
-#   is-package = pkgs.lib.types.package.check;
-#   get-plugin-name = plugin: if is-package plugin then plugin.pname else plugin.plugin.pname;
-#
-#   plugin-config = pkgs.lib.concatMapStringsSep "\n\n" (plugin: ''
-#     # ${get-plugin-name plugin}
-#     # ${hr (get-plugin-name plugin)}
-#     ${plugin.extraConfig or ""}
-#     run-shell ${if is-package plugin then plugin.rtp else plugin.plugin.rtp}
-#   '') [ ];
-#
-#   hr =
-#     text:
-#     let
-#       parts = builtins.split "." text;
-#     in
-#     builtins.foldl' (text: part: if builtins.isList part then "${text}-" else text) "" (
-#       builtins.tail parts
-#     );
-#
-#   tmuxConf = builtins.concatStringsSep "\n" [
-#     "# Main config"
-#
-#     (builtins.readFile ./tmux.conf)
-#   ];
-# in

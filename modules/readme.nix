@@ -1,4 +1,8 @@
-{ inputs, config, ... }:
+{
+  inputs,
+  config,
+  ...
+}:
 {
 
   imports = [ inputs.make-shell.flakeModules.default ];
@@ -8,6 +12,7 @@
       "intro"
       "neovim"
       "tmux"
+      "tmuxPlugins"
       "links"
     ];
 
