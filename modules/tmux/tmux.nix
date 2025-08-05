@@ -4,54 +4,17 @@
   lib,
   ...
 }:
-let
-  plugins = [
-    "better-mouse-mode"
-    "yank"
-    "sesh"
-    "tmux-thumbs"
-    "fzf-tmux-url"
-    "tilish"
-    "vim-tmux-navigator"
-    "tmux-fzf"
-    "catppuccin"
-  ];
-in
 {
   text.readme.parts.tmux =
     # markdown
     ''
-      # Tmux 
+      ## Tmux 
 
-      Tmux with configurations
+      [tmux](https://github.com/tmux/tmux/wiki) with configurations
 
-      ## Links
-
-      - [extrakto](https://github.com/laktak/extrakto)
-      - [jakehamiltons tmux](https://github.com/jakehamilton/tmux)
     '';
 
-  # |> map (file: "- `${file.path_}`")
-  # text.readme.tmux =
-  #   withSystem (builtins.head config.systems) plugins
-  #   |> map (file: "|        ${file}            |                        |")
-  #   |> lib.concat [
-  #     # markdown
-  #     ''
-  #       # Tmux
-  #
-  #       Standalone tmux with configurations, powered by [nixvim](https://github.com/nix-community/nixvim)
-  #
-  #       # Tmux plugins
-  #
-  #       | Name               | Description            |
-  #       | ------------------ | ---------------------- |
-  #     ''
-  #   ]
-  #   |> lib.concatLines
-  #   |> (s: s + "\n");
-
-  text.readme.parts.tmuxPlugins = withSystem (builtins.head config.systems) (
+  text.readme.parts.tmux-plugins = withSystem (builtins.head config.systems) (
     { pkgs, ... }:
     let
       fallbackDescriptions = {
@@ -90,10 +53,6 @@ in
     lib.concatLines (
       [
         ''
-          ## Tmux
-
-          Standalone tmux with configurations, powered by [nixvim](https://github.com/nix-community/nixvim)
-
           ### Tmux plugins
         ''
       ]

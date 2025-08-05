@@ -12,8 +12,7 @@
       "intro"
       "neovim"
       "tmux"
-      "tmuxPlugins"
-      "links"
+      "tmux-plugins"
     ];
 
     parts.intro =
@@ -24,14 +23,6 @@
         Repository for standalone tools, powered by [nix](https://nix.dev/).
 
       '';
-
-    parts.links = ''
-      ## Links
-
-      - [extrakto](https://github.com/laktak/extrakto)
-      - [jakehamiltons tmux](https://github.com/jakehamilton/tmux)
-
-    '';
   };
 
   perSystem =

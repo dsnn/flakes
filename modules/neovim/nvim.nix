@@ -2,7 +2,7 @@
   text.readme.parts.neovim =
     # markdown
     ''
-      # Neovim 
+      ## Neovim 
 
       [nixvim](https://github.com/nix-community/nixvim) with configurations
 
