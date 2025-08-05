@@ -14,39 +14,23 @@ For more info, see [documentation](https://nix-community.github.io/nixvim/plugin
 
 ### Tmux plugins
 
-#### [better-mouse-mode](https://github.com/NHDaly/tmux-better-mouse-mode)
+#### [extrakto](https://github.com/laktak/extrakto)
 
-Better mouse support for tmux
+Fuzzy find your text with fzf instead of selecting it by hand 
 
-#### yank
+#### [fzf](https://github.com/sainnhe/tmux-fzf)
 
-Better yank support
+Use fzf to manage your tmux work environment! 
 
-#### t-smart-tmux-session-manager
+#### navigator
 
-Smart session managment
+Seamless navigation between tmux panes and vim splits
 
-#### [tmux-thumbs](https://github.com/fcsonline/tmux-thumbs)
+#### [theme](https://github.com/catppuccin/tmux)
 
-Lightning fast version of tmux-fingers written in Rust, copy/pasting tmux like vimium/vimperator
-
-#### [fzf-tmux-url](https://github.com/wfxr/tmux-fzf-url)
-
-Quickly open urls on your terminal screen
+Soothing pastel theme for Tmux
 
 #### [tilish](https://github.com/jabirali/tmux-tilish)
 
 Plugin which makes tmux work and feel like i3wm
-
-#### vim-tmux-navigator
-
-Better support for navigation with tmux and vim
-
-#### [tmux-fzf](https://github.com/sainnhe/tmux-fzf)
-
-Use fzf to manage your tmux work environment! 
-
-#### [catppuccin](https://github.com/catppuccin/tmux)
-
-Soothing pastel theme for Tmux
 
