@@ -1,3 +1,4 @@
+{ inputs, ... }:
 {
   text.readme.parts.neovim =
     # markdown
@@ -10,26 +11,20 @@
 
     '';
 
-  flake.modules.neovim = {
-    module =
-      { inputs, ... }:
-      {
-        perSystem =
-          { system, ... }:
-          let
-            nixvimLib = inputs.nixvim.lib.${system};
-            nixvim' = inputs.nixvim.legacyPackages.${system};
-            nixvimModule = {
-              inherit system;
-              module = import ./_config;
-            };
-            nvim = nixvim'.makeNixvimWithModule nixvimModule;
-          in
-          {
-            checks.default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
-
-            packages.neovim = nvim;
-          };
+  perSystem =
+    { system, ... }:
+    let
+      nixvimLib = inputs.nixvim.lib.${system};
+      nixvim' = inputs.nixvim.legacyPackages.${system};
+      nixvimModule = {
+        inherit system;
+        module = import ./_config;
       };
-  };
+      nvim = nixvim'.makeNixvimWithModule nixvimModule;
+    in
+    {
+      checks.default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
+
+      packages.neovim = nvim;
+    };
 }
