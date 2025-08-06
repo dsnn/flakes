@@ -14,19 +14,15 @@ For more info, see [documentation](https://nix-community.github.io/nixvim/plugin
 
 ### Tmux plugins
 
-#### [extrakto](https://github.com/laktak/extrakto)
-
-Fuzzy find your text with fzf instead of selecting it by hand 
-
-#### [fzf](https://github.com/sainnhe/tmux-fzf)
+#### [tmux-fzf](https://github.com/sainnhe/tmux-fzf)
 
 Use fzf to manage your tmux work environment! 
 
-#### navigator
+#### [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)
 
 Seamless navigation between tmux panes and vim splits
 
-#### [theme](https://github.com/catppuccin/tmux)
+#### [catppuccin](https://github.com/catppuccin/tmux)
 
 Soothing pastel theme for Tmux
 

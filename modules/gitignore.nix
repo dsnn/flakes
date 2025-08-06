@@ -1,24 +1,21 @@
 { config, ... }:
 {
-  text.readme = {
-
-    parts.intro =
-      # markdown
-      ''
-        # Flakes 
-
-        Repository for standalone tools, powered by [nix](https://nix.dev/).
-
-      '';
-  };
+  text.gitignore = ''
+    result
+    test
+    result-*
+    .direnv
+    .pre-commit-config.yaml
+    .DS_Store
+  '';
 
   perSystem =
     { pkgs, ... }:
     {
       files.files = [
         {
-          path_ = "README.md";
-          drv = pkgs.writeText "README.md" config.text.readme;
+          path_ = ".gitignore";
+          drv = pkgs.writeText ".gitignore" config.text.gitignore;
         }
       ];
     };
