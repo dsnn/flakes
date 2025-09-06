@@ -32,11 +32,11 @@
         extra = [
           {
             key = "gi";
-            action = "<CMD>Telescope diagnostics<CR>";
+            action = "<CMD>FzfLua diagnostics_document<CR>";
           }
           {
             key = "gr";
-            action = "<CMD>Telescope lsp_references<CR>";
+            action = "<CMD>FzfLua lsp_references<CR>";
           }
         ];
       };

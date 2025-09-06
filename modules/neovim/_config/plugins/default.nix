@@ -8,7 +8,7 @@
     ./mini.nix
     ./neotree.nix
     ./oil.nix
-    ./telescope.nix
+    ./fzf.nix
     ./tmux-navigator.nix
     ./treesitter.nix
     ./trouble.nix

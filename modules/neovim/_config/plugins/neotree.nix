@@ -86,8 +86,8 @@
           "?" = "show_help";
           "<" = "prev_source";
           ">" = "next_source";
-          # ["te"] = "telescope_find",
-          # ["ts"] = "telescope_grep",
+          # ["te"] = "FzfLua_find",
+          # ["ts"] = "FzfLua_grep",
           # h = ''
           #   function(state)
           #     local node = state.tree:get_node()
@@ -115,13 +115,13 @@
   };
 }
 
-# telescope_find = function(state)
+# FzfLua_find = function(state)
 #   local node = state.tree:get_node()
 #   local path = node:get_id()
-#   require("telescope.builtin").find_files(getTelescopeOpts(state, path))
+#   require("FzfLua.builtin").find_files(getFzfLuaOpts(state, path))
 # end,
-# telescope_grep = function(state)
+# FzfLua_grep = function(state)
 #   local node = state.tree:get_node()
 #   local path = node:get_id()
-#   require("telescope.builtin").live_grep(getTelescopeOpts(state, path))
+#   require("FzfLua.builtin").live_grep(getFzfLuaOpts(state, path))
 # end,

@@ -1,28 +1,15 @@
 {
   plugins = {
-    telescope = {
+    fzf-lua = {
       enable = true;
-      extensions = {
-        file-browser = {
-          enable = true;
-        };
-        fzf-native = {
-          enable = true;
-        };
-      };
-      settings = {
-        defaults = {
-          layout_config = {
-            horizontal = {
-              prompt_position = "bottom";
-            };
-          };
-          sorting_strategy = "descending";
-        };
-      };
       keymaps = {
         "<Leader><space>" = {
           action = "buffers";
+          settings = {
+            winopts = {
+              split = "botright new";
+            };
+          };
           options = {
             desc = "Show buffers";
           };
@@ -31,6 +18,11 @@
           action = "git_branches";
           options = {
             desc = "Show git branches";
+          };
+          settings = {
+            winopts = {
+              height  = 
+            };
           };
         };
         "<space>gc" = {
@@ -52,37 +44,44 @@
           };
         };
         "<space>sa" = {
-          action = "find_files";
+          action = "files";
           options = {
             desc = "Find files";
           };
         };
         "<space>sc" = {
-          action = "colorscheme";
+          action = "colorschemes";
           options = {
             desc = "Select colorscheme";
           };
         };
         "<space>sd" = {
-          action = "find_files";
+          action = "files";
           options = {
             desc = "Find dotfiles";
+            # path = "~/.dotfiles";
           };
         };
-        "<space>sf" = {
-          action = "live_grep";
+        "<space>sw" = {
+          action = "grep_cword";
           options = {
-            desc = "Grep current word";
+            desc = "Search word under cursor";
+          };
+        };
+        "<space>sW" = {
+          action = "grep_cWORD";
+          options = {
+            desc = "Search WORD under cursor";
           };
         };
         "<space>sg" = {
           action = "live_grep";
           options = {
-            desc = "Live grep";
+            desc = "Live grep current project";
           };
         };
         "<space>sh" = {
-          action = "help_tags";
+          action = "helptags";
           options = {
             desc = "Show help tags";
           };
@@ -96,7 +95,7 @@
         "<space>sl" = {
           action = "resume";
           options = {
-            desc = "Resume last search";
+            desc = "Resume last query";
           };
         };
         "<space>sq" = {
@@ -108,10 +107,33 @@
         "<space>sr" = {
           action = "oldfiles";
           options = {
-            desc = "Show recently opened files";
+            desc = "Open files history";
           };
         };
       };
+
+      # keymaps = {
+      #   "<Leader><space>" = "buffers";
+      #   "<space>gb" = {
+      #     action = "git_branches";
+      #     options = {
+      #       silent = true;
+      #       desc = "Show git branches";
+      #     };
+      #   };
+      #   "<space>gf" = {
+      #     action = "git_files";
+      #     settings = {
+      #       previewers.cat.cmd = lib.getExe' pkgs.coreutils "cat";
+      #       winopts.height = 0.5;
+      #     };
+      #     options = {
+      #       silent = true;
+      #       desc = "Fzf-Lua Git Files";
+      #     };
+      #   };
+      # };
+
     };
   };
 }

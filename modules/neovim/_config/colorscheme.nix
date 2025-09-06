@@ -16,7 +16,6 @@
           cmp = true;
           neotree = true;
           treesitter = true;
-          telescope.enabled = true;
         };
       };
     };
