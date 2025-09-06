@@ -19,11 +19,11 @@
           options = {
             desc = "Show git branches";
           };
-          settings = {
-            winopts = {
-              height  = 
-            };
-          };
+          # settings = {
+          #   winopts = {
+          #     height  =
+          #   };
+          # };
         };
         "<space>gc" = {
           action = "git_bcommits";

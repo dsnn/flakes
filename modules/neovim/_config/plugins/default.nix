@@ -1,5 +1,6 @@
 {
   imports = [
+    # ./blink.nix
     ./cmp.nix
     ./formatters.nix
     ./linters.nix
